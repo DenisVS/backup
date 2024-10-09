@@ -1,0 +1,7 @@
+Source|Destination|Frequency|Compression|Method
+/zs2T1/jails/filesrv01/srv/office|/zwg1T0/backup/docs|*/2d|gzip|new
+/zs2T1/jails/pezar01/srv/tetrabyte/shared/slike|/zwg1T0/backup/pezar_pic|*/3d||new
+/zs2T1/data/pezar_exports|/zwg1T0/backup/pezar_exports|*/2d|bzip2|new
+/zs2T1/data/server_configs/copies|/zwg1T0/backup/configs/favorites|*/1d|bzip2|new
+/zs2T1/data/scripts|/zwg1T0/backup/scripts|*/3d|bzip2|new
+/zs2T1/data/site_modular_assets|/zwg1T0/backup/site_modular_assets|*/3d|bzip2|new

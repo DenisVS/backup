@@ -1,0 +1,27 @@
+#!/bin/sh
+
+echo file loadCSV.sh is included
+
+loadCSV() {
+        path_to_file="$1"
+        name_of_variable="$2"
+        columns="$3"
+        echo $name_of_variable
+        csv_file=$(cat "$path_to_file")
+        i=0
+        for STRING_CONTENT in $csv_file; do
+                nn="$name_of_variable"_$i
+                eval "$nn"='$STRING_CONTENT' # carefully escape the right-hand side!
+                ii=1
+                rest=$STRING_CONTENT
+                while [ -n "$rest" ]; do
+                        str=$(echo ${rest} | awk -F '|' 'OFS="|"{ print $1}')
+                        # Trim up to the first '|' -- and handle final case, too.
+                        rest=$(echo ${rest} | awk -F '|' 'OFS="|"{$1=""; print $0}' | sed -r 's/^.{1}//') # Everything up to the first '|'
+                        nnn="$nn"_$ii
+                        eval "$nnn"='$str' # carefully escape the right-hand side!
+                        ii=$(expr $ii + 1)
+                done
+                i=$(expr $i + 1)
+        done
+}
